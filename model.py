@@ -418,7 +418,7 @@ plt.rcParams['figure.figsize'] = [6, 4]
 plt.show()
 
 
-### Light GMB
+### Light GBM
 pip install lightgbm
 import lightgbm as lgb
 from lightgbm import LGBMClassifier
@@ -430,30 +430,30 @@ import sklearn.model_selection
 X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.2, random_state=12345)
 
 #zbudowanie modelu
-lgmb_clf = lgb.LGBMClassifier()
-lgmb_clf.fit(X_train, y_train)
+lgbm_clf = lgb.LGBMClassifier()
+lgbm_clf.fit(X_train, y_train)
 
 # predykcja na zbiorze testowym
-y_pred_test = lgmb_clf.predict(X_test)
+y_pred_test = lgbm_clf.predict(X_test)
 # predykcja na zbiorze uczącym
-y_pred_train = lgmb_clf.predict(X_train)
+y_pred_train = lgbm_clf.predict(X_train)
 
 # sprawdzenie accuracy score
-print('Light GMB model accuracy test score: {0:0.4f}'. format(accuracy_score(y_test, y_pred_test)))
+print('Light GBM model accuracy test score: {0:0.4f}'. format(accuracy_score(y_test, y_pred_test)))
 #score test: 0.7667
-print('Light GMB model accuracy train score: {0:0.4f}'. format(accuracy_score(y_train, y_pred_train)))
+print('Light GBM model accuracy train score: {0:0.4f}'. format(accuracy_score(y_train, y_pred_train)))
 #score trainig: 1.000
 
 #kroswalidacja
 cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=1)
-n_scores_lgbm = cross_val_score(lgmb_clf, X, y, scoring='accuracy', cv=cv, n_jobs=-1)
+n_scores_lgbm = cross_val_score(lgbm_clf, X, y, scoring='accuracy', cv=cv, n_jobs=-1)
 # report performance
 print('Accuracy: %.3f (%.3f)' % (mean(n_scores_lgbm), std(n_scores_lgbm)))
 #Średni accuracy score po kroswalidacji: 0.798, odchylenie standardowe: 0.083
 
 #korzystamy z funkcji fit_classifier
-pd.Series(fit_classifier(lgmb_clf, X_train, X_test, y_train, y_test))
+pd.Series(fit_classifier(lgbm_clf, X_train, X_test, y_train, y_test))
 
-lgb.plot_importance(lgmb_clf)
+lgb.plot_importance(lgbm_clf)
 plt.rcParams['figure.figsize'] = [6, 4]
 plt.show()

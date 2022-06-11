@@ -952,9 +952,6 @@ else:
 
 
 sp.posthoc_dunn(zbior,'output', 'slope_zmiana')
-# istornie nieroznia sie miedzy sobą grupa osob chorych z zdrowym z dlawica i ich brakiem
-#skośne do dołu obniżenie ST i poziome obniżenie ST	
-
 
 # In[332]:
 
